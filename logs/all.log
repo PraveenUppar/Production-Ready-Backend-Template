@@ -39,3 +39,48 @@ Unique constraint failed on the fields: (`email`)
 2026-01-08 18:49:58 [32minfo[39m: [32m{"method":"POST","url":"/api/v1/create","status":"400","responseTime":"1.515"}[39m
 2026-01-08 18:50:09 [32minfo[39m: [32m{"method":"POST","url":"/api/v1/create","status":"201","responseTime":"1406.480"}[39m
 2026-01-08 18:51:02 [32minfo[39m: [32m{"method":"PATCH","url":"/api/v1/todo/b905984e-498a-4ea3-a1b8-06f3b7c62c64","status":"200","responseTime":"553.197"}[39m
+2026-01-08 18:56:16 [31merror[39m: [31mPATCH /api/v1/create 404 - Not Found[39m
+2026-01-08 18:56:16 [32minfo[39m: [32m{"method":"PATCH","url":"/api/v1/create","status":"404","responseTime":"9.910"}[39m
+2026-01-08 18:56:36 [31merror[39m: [31mPATCH /api/v1/todo 404 - Not Found[39m
+2026-01-08 18:56:36 [32minfo[39m: [32m{"method":"PATCH","url":"/api/v1/todo","status":"404","responseTime":"2.364"}[39m
+2026-01-08 18:56:49 [32minfo[39m: [32m{"method":"GET","url":"/api/v1/todo","status":"200","responseTime":"368.569"}[39m
+2026-01-08 21:10:04 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:04 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:04 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:04 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:04 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:05 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:05 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:05 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:06 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:06 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:07 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:07 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:08 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:09 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:09 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:10 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:11 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:11 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:12 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:12 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:12 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:12 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:36 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:36 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:36 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:36 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:36 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:37 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:10:37 [31merror[39m: [31mRedis Connection Error: AggregateError[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:47 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:48 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:48 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:48 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:49 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
+2026-01-08 21:11:49 [31merror[39m: [31mRedis Connection Error: Error: connect EPERM /[39m
