@@ -52,3 +52,9 @@ That client must exist before TypeScript compiles.
 Docker builds the app without envs, so Prisma needs a dummy DB URL at build time.
 Real credentials are injected only when the container runs.
 
+Prisma:
+  schema → generate → types → runtime queries
+
+TypeScript:
+  source → compile → dist
+

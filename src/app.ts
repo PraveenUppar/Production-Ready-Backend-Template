@@ -10,8 +10,7 @@ import globalErrorHandler from './middlewares/error.middleware.js';
 import AppError from './utils/AppError.js';
 import userRoute from './routes/user.route.js';
 import todoRoute from './routes/todo.route.js';
-import { prisma } from './libs/prisma.js';
-import redis from './redis/redis.js';
+import healthRouter from './routes/health.check.js';
 
 dotenv.config();
 const app = express();
@@ -41,39 +40,7 @@ app.use(
   }),
 );
 
-app.get('/health/database', async (req: Request, res: Response) => {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    res.status(200).json({
-      status: 'Active',
-      services: {
-        database: 'Connected',
-      },
-    });
-  } catch (error: any) {
-    res.status(503).json({
-      status: 'Inactive',
-      error: error.message,
-    });
-  }
-});
-app.get('/health/redis', async (req: Request, res: Response) => {
-  try {
-    const pong = await redis.ping();
-    res.status(200).json({
-      status: 'Active',
-      services: {
-        redis: pong === 'PONG' ? 'connected' : 'unexpected response',
-      },
-    });
-  } catch (error: any) {
-    res.status(503).json({
-      status: 'Inactive',
-      error: error.message,
-    });
-  }
-});
-
+app.use('/health', healthRouter);
 app.use('/api/v1/auth', userRoute);
 app.use('/api/v1', todoRoute);
 app.all('/*splat', (req: Request, res: Response, next: NextFunction) => {
