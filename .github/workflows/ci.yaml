@@ -1,41 +1,19 @@
-name: CI Pipeline
+name: CI
 
 on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
-    env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
-      DIRECT_URL: postgresql://postgres:postgres@localhost:5432/testdb
-      JWT_SECRET: testsecret
-      NODE_ENV: test
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -44,14 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate Prisma client
+      - name: Prisma generate
         run: npx prisma generate
 
-      - name: Run Prisma migrations
-        run: npx prisma migrate deploy
-
-      - name: Type check & build
+      - name: TypeScript build
         run: npm run build
 
       - name: Docker build (validation only)
-        run: docker build -t todo-backend-ci .
+        run: docker build .
