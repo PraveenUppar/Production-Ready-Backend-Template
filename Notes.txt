@@ -14,6 +14,7 @@ Phase 13 Open API using sawgger                     -- DONE
 Phase 14 Health check points                        -- DONE
 Phase 15 Monitoring                                 -- 
 Phase 16 Rate limiting                              -- DONE
+Phase 17 Observability                              -- 
 
 ---------------------------------------------------------------------------
 Request → [Logger] → [Zod Validation] → Controller → Service → Database (If anything fails) ↘ [Global Error Handler] → Response
