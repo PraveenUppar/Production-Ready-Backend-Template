@@ -1,7 +1,12 @@
 jest.mock('../../libs/prisma');
 jest.mock('../../redis/redis');
 
-import { createTodoService, getTodoService } from '../../services/todo.service';
+import {
+  createTodoService,
+  getTodoService,
+  deleteTodoService,
+  patchTodoService,
+} from '../../services/todo.service';
 
 import { prisma } from '../../libs/prisma';
 import redis from '../../redis/redis';
@@ -68,6 +73,43 @@ describe('Todo Service - Unit Tests', () => {
       expect(redis.set).toHaveBeenCalled();
       // expect(result.data).toEqual(todos);
       // expect(result.meta.totalItems).toBe(1);
+    });
+  });
+
+  describe('deleteTodoService', () => {
+    it('Deletes todo and clears cache', async () => {
+      const deletedTodo = { id: '1' };
+
+      (prisma.todo.delete as jest.Mock).mockResolvedValue(deletedTodo);
+      (redis.keys as jest.Mock).mockResolvedValue([]);
+
+      const result = await deleteTodoService('1');
+
+      expect(prisma.todo.delete).toHaveBeenCalledWith({
+        where: { id: '1' },
+      });
+
+      expect(result).toEqual(deletedTodo);
+    });
+  });
+
+  describe('patchTodoService', () => {
+    it('Updates todo and clears cache', async () => {
+      const updatedTodo = { id: '1', title: 'Updated Todo' };
+
+      (prisma.todo.update as jest.Mock).mockResolvedValue(updatedTodo);
+      (redis.keys as jest.Mock).mockResolvedValue([]);
+
+      const result = await patchTodoService('1', {
+        title: 'Updated Todo',
+      });
+
+      expect(prisma.todo.update).toHaveBeenCalledWith({
+        where: { id: '1' },
+        data: { title: 'Updated Todo' },
+      });
+
+      expect(result).toEqual(updatedTodo);
     });
   });
 });
