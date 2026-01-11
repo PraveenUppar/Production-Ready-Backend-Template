@@ -1,7 +1,3 @@
-const { createDefaultPreset } = require('ts-jest');
-
-const tsJestTransformCfg = createDefaultPreset().transform['^.+\\.tsx?$'];
-
 /** @type {import("jest").Config} **/
 module.exports = {
   preset: 'ts-jest',
@@ -11,7 +7,4 @@ module.exports = {
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/config/**'],
-  transform: {
-    ...tsJestTransformCfg,
-  },
 };
