@@ -1,4 +1,4 @@
-import { prisma } from '../libs/prisma.js';
+import { prisma } from '../libs/prisma';
 import bcrypt from 'bcrypt';
 
 interface UserData {

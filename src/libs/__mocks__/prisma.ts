@@ -6,5 +6,9 @@ export const prisma = {
     delete: jest.fn(),
     update: jest.fn(),
   },
+  user: {
+    create: jest.fn(),
+    findUnique: jest.fn(),
+  },
   $transaction: jest.fn(),
 };

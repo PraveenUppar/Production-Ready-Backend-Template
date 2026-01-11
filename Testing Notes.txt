@@ -25,6 +25,7 @@ Java → JUnit + Mockito
 Go → testing + testify
 -----------------------------------------------------
 Integration Tests
+
 Real DB (Docker container)
 Test API endpoints
 DB schema + queries
@@ -36,6 +37,7 @@ testcontainers
 Or docker-compose.test.yml
 -----------------------------------------------------
 Contract / API Tests
+
 Validate OpenAPI schema
 Ensure backward compatibility
 -----------------------------------------------------
