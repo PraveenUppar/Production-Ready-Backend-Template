@@ -15,6 +15,10 @@ Phase 14 Health check points                        -- DONE
 Phase 15 Monitoring                                 -- 
 Phase 16 Rate limiting                              -- DONE
 Phase 17 Observability                              -- 
+Phase 18 Authentication                             -- DONE
+Phase 19 Queue                                      -- 
+Phase 20 Security                                   --  
+Phase 21 Code Quality                               -- 
 
 ---------------------------------------------------------------------------
 Request → [Logger] → [Zod Validation] → Controller → Service → Database (If anything fails) ↘ [Global Error Handler] → Response
@@ -349,3 +353,73 @@ kubectl apply -f ingress.yaml
 
 kubectl describe certificate -n todo-backend
 
+---------------------------------------------------------------------------------
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:46417
+CoreDNS is running at https://127.0.0.1:46417/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get nodes
+NAME                         STATUS   ROLES           AGE     VERSION
+todo-backend-control-plane   Ready    control-plane   5m35s   v1.30.0
+
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get pods -A
+NAMESPACE            NAME                                                 READY   STATUS    RESTARTS   AGE
+kube-system          coredns-7db6d8ff4d-kzbxr                             1/1     Running   0          5m29s
+kube-system          coredns-7db6d8ff4d-rsfd2                             1/1     Running   0          5m29s
+kube-system          etcd-todo-backend-control-plane                      1/1     Running   0          5m44s
+kube-system          kindnet-bdb4t                                        1/1     Running   0          5m30s
+kube-system          kube-apiserver-todo-backend-control-plane            1/1     Running   0          5m44s
+kube-system          kube-controller-manager-todo-backend-control-plane   1/1     Running   0          5m44s
+kube-system          kube-proxy-5z8x6                                     1/1     Running   0          5m30s
+kube-system          kube-scheduler-todo-backend-control-plane            1/1     Running   0          5m44s
+local-path-storage   local-path-provisioner-988d74bc-sp4bf                1/1     Running   0          5m29s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get namespaces
+NAME                 STATUS   AGE
+default              Active   7m32s
+kube-node-lease      Active   7m32s
+kube-public          Active   7m32s
+kube-system          Active   7m32s
+local-path-storage   Active   7m26s
+todo-backend         Active   13s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get deployments -n todo-backend
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+todo-backend   1/1     1            1           2m18s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get pods -n todo-backend
+NAME                           READY   STATUS    RESTARTS   AGE
+todo-backend-65cdc495b-p5skx   1/1     Running   0          2m21s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get secrets -n todo-backend
+NAME                   TYPE     DATA   AGE
+todo-backend-secrets   Opaque   6      9s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl port-forward -n todo-backend service/todo-backend 3000:80
+Forwarding from 127.0.0.1:3000 -> 3000
+Forwarding from [::1]:3000 -> 3000
+Handling connection for 3000
+Handling connection for 3000
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todokubectl rollout status deployment todo-backend -n todo-backendnd
+Waiting for deployment "todo-backend" rollout to finish: 2 out of 3 new replicas have been updated...
+
+kubectl rollout undo deployment todo-backend -n todo-backend
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todokubectl get pods -n ingress-nginxnx
+NAME                                        READY   STATUS    RESTARTS   AGE
+ingress-nginx-controller-6775c6fd56-g6jfp   1/1     Running   0          82s
+
+pavii@PraveenUppar:/mnt/c/Users/pavii/Desktop/Todo$ kubectl get svc -n ingress-nginx
+NAME                                 TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             LoadBalancer   10.96.74.233   <pending>     80:32419/TCP,443:30816/TCP   86s
+ingress-nginx-controller-admission   ClusterIP      10.96.248.83   <none>        443/TCP                      86s
+
+ kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80
+Forwarding from 127.0.0.1:8080 -> 80
+Forwarding from [::1]:8080 -> 80
+Handling connection for 8080
